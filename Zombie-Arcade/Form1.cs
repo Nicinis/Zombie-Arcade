@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Zombie_Arcade
 {
+
     public partial class Form1 : Form
     {
         private enum KeyMove { none = 0, up = 1, right = 2, down = 4, left = 8 }
@@ -15,6 +16,9 @@ namespace Zombie_Arcade
         private Random randY = new Random();
         List<Zombie> zombieList = new List<Zombie>();
         List<Bullet> bulletList = new List<Bullet>();
+        public double stepX = 0.00;
+        public double stepY = 0.00;
+        public double speed = 30.00;
 
         public Form1()
         {
@@ -106,6 +110,14 @@ namespace Zombie_Arcade
         {
             Bullet bullets = new Bullet(Player1.PlayerX + 12, Player1.PlayerY + 21, this);
             bulletList.Add(bullets);
+
+            foreach (Bullet bullet in bulletList)
+            {
+                CalcTrajectory(Player1.PlayerX, Player1.PlayerY, MouseLocX, MouseLocY);
+                bullet.bulletSpdX = stepX;
+                bullet.bulletSpdY = stepY;
+            }
+
         }
 
         private void timer1_Tick(object sender, EventArgs e) //code provided from Steve on moving a control using binary values to check if multiple keys are being pressed 
@@ -117,19 +129,27 @@ namespace Zombie_Arcade
 
             foreach (Bullet bullet in bulletList) // need to fix the bullet system
             {
-                if (MouseLocX > Player1.PlayerX) bullet.BulletMoveRight();
-                if (MouseLocX < Player1.PlayerX) bullet.BulletMoveLeft();
-                if (MouseLocY > Player1.PlayerY) bullet.BulletMoveDown();
-                if (MouseLocY < Player1.PlayerY) bullet.BulletMoveUp();
+                bullet.BulletMove();
             }
 
-            foreach (Zombie tmpzombie in zombieList)
-            {
-                if (Player1.PlayerX < tmpzombie.ZombieX) tmpzombie.ZombieMoveLeft();
-                else if (Player1.PlayerX > tmpzombie.ZombieX) tmpzombie.ZombieMoveRight();
-                if (Player1.PlayerY < tmpzombie.ZombieY) tmpzombie.ZombieMoveUp();
-                else if (Player1.PlayerY > tmpzombie.ZombieY) tmpzombie.ZombieMoveDown();
-            }
+            //foreach (Zombie tmpzombie in zombieList)
+            //{
+            //    if (Player1.PlayerX < tmpzombie.ZombieX) tmpzombie.ZombieMoveLeft();
+            //    else if (Player1.PlayerX > tmpzombie.ZombieX) tmpzombie.ZombieMoveRight();
+            //    if (Player1.PlayerY < tmpzombie.ZombieY) tmpzombie.ZombieMoveUp();
+            //    else if (Player1.PlayerY > tmpzombie.ZombieY) tmpzombie.ZombieMoveDown();
+            //}
+
+
+        }
+        protected virtual void CalcTrajectory(int startX, int startY, int endX, int endY)
+        {
+            double deltaX = endX - startX;
+            double deltaY = endY - startY;
+            double angle = Math.Atan2(deltaY, deltaX);
+
+            stepX = speed * Math.Cos(angle);
+            stepY = speed * Math.Sin(angle);
         }
     }
 }

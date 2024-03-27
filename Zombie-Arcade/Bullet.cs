@@ -11,12 +11,8 @@ namespace Zombie_Arcade
     internal class Bullet
     {
         private PictureBox bulletPic;
-        private int bulletSpd = 7;
-
-        public int BulletX { get { return bulletPic.Left; } }
-
-        public int BulletY { get { return bulletPic.Top; } }
-
+        public double bulletSpdX = 0;
+        public double bulletSpdY = 0;
 
         public Bullet(int x, int y, Form bulletfrom)
         {
@@ -29,24 +25,11 @@ namespace Zombie_Arcade
             bulletfrom.Controls.Add(bulletPic);
         }
 
-        public void BulletMoveDown()
+        public void BulletMove() 
         {
-            bulletPic.Top += bulletSpd;
+            bulletPic.Left += Convert.ToInt32(bulletSpdX);
+            bulletPic.Top += Convert.ToInt32(bulletSpdY);
         }
-
-        public void BulletMoveUp()
-        {
-            bulletPic.Top -= bulletSpd;
-        }
-
-        public void BulletMoveLeft()
-        {
-            bulletPic.Left -= bulletSpd;
-        }
-        public void BulletMoveRight()
-        {
-            bulletPic.Left += bulletSpd;
-        }
-
+        
     }
 }
