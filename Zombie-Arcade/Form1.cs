@@ -29,6 +29,9 @@ namespace Zombie_Arcade
         {
 
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.UserPaint, true);
             Width = 1500;
             Height = 800;
             Player1 = new Player(this.ClientSize.Width / 2, this.ClientSize.Height / 2, this);
