@@ -38,7 +38,7 @@
             // tmrMovement
             // 
             tmrMovement.Enabled = true;
-            tmrMovement.Interval = 25;
+            tmrMovement.Interval = 20;
             tmrMovement.Tick += timer1_Tick;
             // 
             // zombieTimer
@@ -50,27 +50,30 @@
             // lblZombieCnt
             // 
             lblZombieCnt.AutoSize = true;
-            lblZombieCnt.Location = new Point(750, 9);
+            lblZombieCnt.Location = new Point(1071, 15);
+            lblZombieCnt.Margin = new Padding(4, 0, 4, 0);
             lblZombieCnt.Name = "lblZombieCnt";
-            lblZombieCnt.Size = new Size(0, 15);
+            lblZombieCnt.Size = new Size(0, 25);
             lblZombieCnt.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(17, 15);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(59, 25);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1210, 710);
+            ClientSize = new Size(1729, 1183);
             Controls.Add(label1);
             Controls.Add(lblZombieCnt);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
             Text = "Wasteland";
             Load += Form1_Load;
