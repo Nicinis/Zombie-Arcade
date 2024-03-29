@@ -17,11 +17,12 @@ namespace Zombie_Arcade
         private Random randY = new Random();
         List<Zombie> zombieList = new List<Zombie>();
         List<Bullet> bulletList = new List<Bullet>();
+        List<Bullet> RemoveBullets = new List<Bullet>();
         private Bullet bullets;
         private Zombie zombie;
         public double stepX = 0.00;
         public double stepY = 0.00;
-        public double speed = 15.00;
+        public double speed = 30.00;
 
         public Form1()
         {
@@ -31,6 +32,8 @@ namespace Zombie_Arcade
             Height = 800;
             Player1 = new Player(this.ClientSize.Width / 2, this.ClientSize.Height / 2, this);
             bullets = new Bullet(-1, -1, this);
+            zombie = new Zombie(400, 300, this);
+            zombieList.Add(zombie);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,11 +44,10 @@ namespace Zombie_Arcade
 
         private void zombieTimer_Tick(object sender, EventArgs e)
         {
-            zombieCounter = zombieList.Count;
-            lblZombieCnt.Text = "Zombies: " + zombieCounter.ToString();
+
             if (zombieCounter < 5)
             {
-                for (int z = 0; z < 2; z++)
+                for (int z = 0; z < 5; z++)
                 {
                     zombie = new Zombie(randX.Next(-50, -1) | randX.Next(1501, 1551), randY.Next(-50, -1) | randY.Next(801, 851), this);
                     zombieList.Add(zombie);
@@ -102,11 +104,14 @@ namespace Zombie_Arcade
 
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        private void Form1_MouseMove(object sender, MouseEventArgs e) //place i dumped some code to constantly be updated as long as the cuursosr is moving in the form
         {
             MouseLocX = e.Location.X;
             MouseLocY = e.Location.Y;
             label1.Text = "X: " + MouseLocX.ToString() + " " + "Y: " + MouseLocY.ToString();
+
+            zombieCounter = zombieList.Count;
+            lblZombieCnt.Text = "Zombies: " + zombieCounter.ToString();
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -127,7 +132,28 @@ namespace Zombie_Arcade
 
             foreach (Bullet bullet in bulletList)
             {
-                bullet.BulletMove();
+                bullet.BulletMove();//in this method the CalcTrag method formulates step values to shoot the bullet in the location of the mouse crusor
+
+                foreach (Zombie zombie in zombieList)
+                {
+                    if (ZombieBullletCollisionTest(zombie, bullet)) //getting the bullets and zombies form each foreach loop to be passed as arguments for my collision test
+                    {
+                        zombie.health -= 1;
+                        RemoveBullets.Add(bullet); //needed a bullet list to add the used bullets that get detected for collision
+                        if (zombie.health == 0)
+                        {
+                            zombieList.Remove(zombie);
+                            zombie.ZombieDeath();
+                        }
+                        break; //here i need to break the loop after a collision is detected otherwise it continues to loop
+                    }
+                }
+            }
+
+            foreach (Bullet Rbullet in RemoveBullets) //using the new bullet list titled RemoveBullets i can remove the bullets from the form and list without crashing my program
+            {
+                bulletList.Remove(Rbullet);
+                Rbullet.BulletRemove2();
             }
 
             foreach (Zombie tmpzombie in zombieList)
@@ -153,15 +179,7 @@ namespace Zombie_Arcade
                 }
             }
 
-            if (ZombieBullletCollisionTest(zombie, bullets))
-            {
-                zombie.health -= 1;
-                if (zombie.health == 0)
-                {
-                    zombieList.Remove(zombie);
-                    zombie.ZombieDeath();
-                }
-            }
+
         }
         protected virtual void CalcTrajectory(int startX, int startY, int endX, int endY)
         {

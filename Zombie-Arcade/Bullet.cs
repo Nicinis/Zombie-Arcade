@@ -44,6 +44,11 @@ namespace Zombie_Arcade
             if(bulletPic.Top > form.ClientSize.Height) bulletPic.Visible = false;
             if(bulletPic.Top < 0) bulletPic.Visible = false;
         }
+
+        public void BulletRemove2() 
+        {
+            bulletPic.Visible = false;
+        }
         
     }
 }

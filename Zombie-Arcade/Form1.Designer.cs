@@ -38,13 +38,13 @@
             // tmrMovement
             // 
             tmrMovement.Enabled = true;
-            tmrMovement.Interval = 20;
+            tmrMovement.Interval = 25;
             tmrMovement.Tick += timer1_Tick;
             // 
             // zombieTimer
             // 
             zombieTimer.Enabled = true;
-            zombieTimer.Interval = 25;
+            zombieTimer.Interval = 15000;
             zombieTimer.Tick += zombieTimer_Tick;
             // 
             // lblZombieCnt
