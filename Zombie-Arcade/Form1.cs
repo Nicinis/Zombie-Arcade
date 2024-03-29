@@ -16,6 +16,7 @@ namespace Zombie_Arcade
         private Random randX = new Random();
         private Random randY = new Random();
         List<Zombie> zombieList = new List<Zombie>();
+        List<Zombie> RemoveZombies = new List<Zombie>();
         List<Bullet> bulletList = new List<Bullet>();
         List<Bullet> RemoveBullets = new List<Bullet>();
         private Bullet bullets;
@@ -142,10 +143,8 @@ namespace Zombie_Arcade
                         RemoveBullets.Add(bullet); //needed a bullet list to add the used bullets that get detected for collision
                         if (zombie.health == 0)
                         {
-                            zombieList.Remove(zombie);
-                            zombie.ZombieDeath();
+                            RemoveZombies.Add(zombie); //needed a zombie list to add the dead zombies to
                         }
-                        break; //here i need to break the loop after a collision is detected otherwise it continues to loop
                     }
                 }
             }
@@ -154,6 +153,12 @@ namespace Zombie_Arcade
             {
                 bulletList.Remove(Rbullet);
                 Rbullet.BulletRemove2();
+            }
+
+            foreach (Zombie Rzombie in RemoveZombies) //using the new RemoveZombies list i can remove the zombies without breaking my other foreach loop
+            {
+                zombieList.Remove(Rzombie);
+                Rzombie.ZombieDeath();
             }
 
             foreach (Zombie tmpzombie in zombieList)
