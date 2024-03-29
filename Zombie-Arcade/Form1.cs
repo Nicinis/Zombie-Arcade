@@ -161,30 +161,13 @@ namespace Zombie_Arcade
                 Rzombie.ZombieDeath();
             }
 
-            foreach (Zombie tmpzombie in zombieList)
+            foreach (Zombie tmpzombie in zombieList) //here the zombies just follow the player based on their loaction
             {
                 if (Player1.PlayerX < tmpzombie.ZombieX) tmpzombie.ZombieMoveLeft();
                 else if (Player1.PlayerX > tmpzombie.ZombieX) tmpzombie.ZombieMoveRight();
                 if (Player1.PlayerY < tmpzombie.ZombieY) tmpzombie.ZombieMoveUp();
                 else if (Player1.PlayerY > tmpzombie.ZombieY) tmpzombie.ZombieMoveDown();
             }
-
-            foreach (Zombie zombie1 in zombieList)
-            {
-                foreach (Zombie zombie2 in zombieList)
-                {
-                    if (zombie1 != zombie2)
-                    {
-                        if (zombie1.CollisionWith(zombie2))
-                        {
-                            zombie1.ResovleCollision(zombie1, zombie2);
-                            zombie2.ResovleCollision(zombie1, zombie2);
-                        }
-                    }
-                }
-            }
-
-
         }
         protected virtual void CalcTrajectory(int startX, int startY, int endX, int endY)
         {

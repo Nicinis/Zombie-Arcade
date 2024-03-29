@@ -51,17 +51,5 @@ namespace Zombie_Arcade
             ZombiePic.Visible = false;
         }
 
-        public bool CollisionWith(Zombie otherZombie) 
-        {
-            return this.ZombiePic.Bounds.IntersectsWith(otherZombie.ZombiePic.Bounds);
-        }
-
-        public void ResovleCollision(Zombie zombie1, Zombie zombie2) 
-        {
-            zombie1.ZombiePic.Left -= 10;
-            zombie2.ZombiePic.Left += 10;
-            zombie1.ZombiePic.Top -= 5;
-            zombie2.ZombiePic.Top += 5;
-        }
     }
 }
