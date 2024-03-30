@@ -22,7 +22,7 @@ namespace Zombie_Arcade
         public Zombie(int x, int y, Form zombieform)
         {
             ZombiePic = new PictureBox();
-            ZombiePic.BackColor = Color.Red;
+            ZombiePic.BackColor = Color.Green;
             ZombiePic.Width = 23;
             ZombiePic.Height = 42;
             ZombiePic.Left = x;
@@ -49,6 +49,21 @@ namespace Zombie_Arcade
         public void ZombieDeath()
         {
             ZombiePic.Visible = false;
+        }
+        public void ZombieHealth()
+        {
+            if (health == 3)
+            {
+                ZombiePic.BackColor = Color.Green;
+            }
+            else if (health == 2)
+            {
+                ZombiePic.BackColor = Color.Orange;
+            }
+            else if (health == 1) 
+            {
+                ZombiePic.BackColor = Color.Red;
+            }
         }
 
         public void ResovleCollision(Zombie zombie1, Zombie zombie2)

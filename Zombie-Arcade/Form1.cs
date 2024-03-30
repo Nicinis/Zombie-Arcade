@@ -23,7 +23,7 @@ namespace Zombie_Arcade
         private Zombie zombie;
         public double stepX = 0.00;
         public double stepY = 0.00;
-        public double speed = 30.00;
+        public double speed = 20.00;
 
         public Form1()
         {
@@ -170,6 +170,7 @@ namespace Zombie_Arcade
                     if (ZombieBullletCollisionTest(zombie, bullet)) //getting the bullets and zombies form each foreach loop to be passed as arguments for my collision test
                     {
                         zombie.health -= 1;
+                        zombie.ZombieHealth();
                         RemoveBullets.Add(bullet); //needed a bullet list to add the used bullets that get detected for collision
                         if (zombie.health == 0)
                         {
@@ -209,6 +210,7 @@ namespace Zombie_Arcade
                     }
                 }
             }
+            BulletHandleing();
         }
         protected virtual void CalcTrajectory(int startX, int startY, int endX, int endY)
         {
@@ -246,6 +248,31 @@ namespace Zombie_Arcade
                 return false;
 
             return true;
+        }
+
+        private void BulletHandleing()
+        {
+            if (bullets.BulletX > this.ClientSize.Width)
+            {
+                bulletList.Remove(bullets);
+                bullets.BulletRemove2();
+            }
+            else if (bullets.BulletX < 0)
+            {
+                bulletList.Remove(bullets);
+                bullets.BulletRemove2();
+            }
+
+            if (bullets.BulletY < 0)
+            {
+                bulletList.Remove(bullets);
+                bullets.BulletRemove2();
+            }
+            else if (bullets.BulletY > this.ClientSize.Height) 
+            {
+                bulletList.Remove(bullets);
+                bullets.BulletRemove2();
+            }
         }
     }
 }
