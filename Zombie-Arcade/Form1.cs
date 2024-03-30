@@ -143,6 +143,9 @@ namespace Zombie_Arcade
 
             zombieCounter = zombieList.Count;
             lblZombieCnt.Text = "Zombies: " + zombieCounter.ToString();
+
+            progressBar1.Value = Player1.health;
+            label2.Text = "Health: " + Player1.health.ToString();
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -202,6 +205,17 @@ namespace Zombie_Arcade
 
             foreach (Zombie zombie1 in zombieList)
             {
+                if (ZombiePlayerCollisionTest(zombie1, Player1)) 
+                {
+                    Player1.health -= 1;
+                    if(Player1.health == 0)
+                    {
+                        Player1.PlayerDeath();
+                        tmrMovement.Enabled = false;
+                        zombieTimer.Enabled = false;
+                        MessageBox.Show("The zombies ate your brains!");
+                    }
+                }
                 foreach (Zombie zombie2 in zombieList)
                 {
                     if (zombie1 != zombie2 && ZombieZombieCollisionTest(zombie1, zombie2))
@@ -250,12 +264,27 @@ namespace Zombie_Arcade
             return true;
         }
 
+        private Boolean ZombiePlayerCollisionTest(Zombie zombie1, Player player) //returns true if collision has occured, false otherwise
+        {
+            if (zombie1.ZombieX + zombie1.ZombieWidth < player.PlayerX)
+                return false;
+            if (player.PlayerX + player.PlayerWidth < zombie1.ZombieX)
+                return false;
+            if (zombie1.ZombieY + zombie1.ZombieHeight < player.PlayerY)
+                return false;
+            if (player.PlayerY + player.PlayerHeight < zombie1.ZombieY)
+                return false;
+
+            return true;
+        }
+
         private void BulletHandleing()
         {
             if (bullets.BulletX > this.ClientSize.Width)
             {
                 bulletList.Remove(bullets);
                 bullets.BulletRemove2();
+                
             }
             else if (bullets.BulletX < 0)
             {

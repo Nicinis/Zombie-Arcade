@@ -34,6 +34,8 @@
             zombieTimer = new System.Windows.Forms.Timer(components);
             lblZombieCnt = new Label();
             label1 = new Label();
+            label2 = new Label();
+            progressBar1 = new ProgressBar();
             SuspendLayout();
             // 
             // tmrMovement
@@ -67,14 +69,33 @@
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(502, 15);
+            label2.Name = "label2";
+            label2.Size = new Size(59, 25);
+            label2.TabIndex = 2;
+            label2.Text = "label2";
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(625, 12);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(150, 34);
+            progressBar1.TabIndex = 3;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1729, 1183);
+            Controls.Add(progressBar1);
+            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblZombieCnt);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
             Text = "Wasteland";
@@ -95,5 +116,7 @@
         private System.Windows.Forms.Timer zombieTimer;
         private Label lblZombieCnt;
         private Label label1;
+        private Label label2;
+        private ProgressBar progressBar1;
     }
 }

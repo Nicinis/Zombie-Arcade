@@ -12,6 +12,7 @@ namespace Zombie_Arcade
         private int zxSpeed = 3;
         private int zySpeed = 3;
         public int health = 3;
+        private Form form;
 
         public int ZombieX { get { return ZombiePic.Left; } }
         public int ZombieY { get { return ZombiePic.Top; } }
@@ -28,6 +29,7 @@ namespace Zombie_Arcade
             ZombiePic.Left = x;
             ZombiePic.Top = y;
             zombieform.Controls.Add(ZombiePic);
+            form = zombieform;
         }
         public void ZombieMoveUp()
         {
@@ -49,6 +51,8 @@ namespace Zombie_Arcade
         public void ZombieDeath()
         {
             ZombiePic.Visible = false;
+            form.Controls.Remove(ZombiePic);
+            ZombiePic.Dispose();
         }
         public void ZombieHealth()
         {

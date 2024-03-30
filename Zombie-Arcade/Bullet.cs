@@ -48,6 +48,8 @@ namespace Zombie_Arcade
         public void BulletRemove2() 
         {
             bulletPic.Visible = false;
+            form.Controls.Remove(bulletPic);
+            bulletPic.Dispose();
         }
         
     }

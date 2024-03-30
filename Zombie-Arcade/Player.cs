@@ -12,9 +12,13 @@ namespace Zombie_Arcade
         private int pxSpeed = 5;
         private int pySpeed = 5;
         private Form form;
+        public int health = 100;
 
         public int PlayerX { get { return PlayerPic.Left; } }
         public int PlayerY { get { return PlayerPic.Top; } }
+
+        public int PlayerWidth { get { return PlayerPic.Width; } }
+        public int PlayerHeight { get { return PlayerPic.Height; } }
 
         public Player(int x, int y, Form mainform)
         {
@@ -47,6 +51,13 @@ namespace Zombie_Arcade
         {
             PlayerPic.Left += pxSpeed;
             if (PlayerPic.Left + PlayerPic.Width >= form.ClientSize.Width) PlayerPic.Left = form.ClientSize.Width - PlayerPic.Width;
+        }
+
+        public void PlayerDeath() 
+        {
+            PlayerPic.Visible = false;
+            PlayerPic.Dispose();
+            
         }
 
     }
