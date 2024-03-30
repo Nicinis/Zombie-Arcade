@@ -34,10 +34,10 @@ namespace Zombie_Arcade
         {
             bulletPic.Left += Convert.ToInt32(bulletSpdX);
             bulletPic.Top += Convert.ToInt32(bulletSpdY);
-            bulletRemove();
+            BulletRemove();
         }
 
-        public void bulletRemove()
+        public void BulletRemove()
         {
             if(bulletPic.Left > form.ClientSize.Width) bulletPic.Visible = false;
             if(bulletPic.Left < 0) bulletPic.Visible = false;
