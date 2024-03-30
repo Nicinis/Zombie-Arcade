@@ -46,10 +46,44 @@ namespace Zombie_Arcade
             ZombiePic.Left += zxSpeed;
         }
 
-        public void ZombieDeath() 
+        public void ZombieDeath()
         {
             ZombiePic.Visible = false;
         }
 
+        public void ResovleCollision(Zombie zombie1, Zombie zombie2)
+        {
+            int overlap1X = zombie1.ZombiePic.Left - zombie2.ZombiePic.Right;
+            int overlap2X = zombie1.ZombiePic.Right - zombie2.ZombiePic.Left;
+
+            int overlap1Y = zombie1.ZombiePic.Top - zombie2.ZombiePic.Bottom;
+            int overlap2Y = zombie1.ZombiePic.Bottom - zombie2.ZombiePic.Top;
+
+            if (overlap1X > overlap2X)
+            {
+                int newoverlap = overlap1X / 2;
+                zombie1.ZombiePic.Left -= newoverlap + 1;
+                zombie2.ZombiePic.Left += newoverlap + 1;
+            }
+            else
+            {
+                int newoverlap = overlap2X / 2;
+                zombie1.ZombiePic.Left -= newoverlap + 1;
+                zombie2.ZombiePic.Left += newoverlap + 1;
+            }
+
+            if (overlap1Y > overlap2Y)
+            {
+                int newoverlap = overlap1Y / 2;
+                zombie1.ZombiePic.Top -= newoverlap + 1;
+                zombie2.ZombiePic.Top += newoverlap + 1;
+            }
+            else
+            {
+                int newoverlap = overlap2Y / 2;
+                zombie1.ZombiePic.Top -= newoverlap + 1;
+                zombie2.ZombiePic.Top += newoverlap + 1;
+            }
+        }
     }
 }

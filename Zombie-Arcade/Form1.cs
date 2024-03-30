@@ -36,8 +36,11 @@ namespace Zombie_Arcade
             Height = 800;
             Player1 = new Player(this.ClientSize.Width / 2, this.ClientSize.Height / 2, this);
             bullets = new Bullet(-1, -1, this);
-            zombie = new Zombie(400, 300, this);
-            zombieList.Add(zombie);
+            for (int z = 0; z < 2; z++) //2 random zombies to test with
+            {
+                zombie = new Zombie(randX.Next(1, 800), randY.Next(1, 400), this);
+                zombieList.Add(zombie);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,12 +51,36 @@ namespace Zombie_Arcade
 
         private void zombieTimer_Tick(object sender, EventArgs e)
         {
+            int leftsideX = randX.Next(-50, -1);
+            int rightsideX = randX.Next(1501, 1551);
+            int sideY = randY.Next(0, 800);
+            int topsideY = randY.Next(-50, -1);
+            int bottomsideY = randY.Next(801, 851);
+            int sideX = randX.Next(0, 1500);
 
-            if (zombieCounter < 5)
+            if (zombieCounter < 6)
             {
-                for (int z = 0; z < 5; z++)
+                for (int z = 0; z < 2; z++)
                 {
-                    zombie = new Zombie(randX.Next(-50, -1) | randX.Next(1501, 1551), randY.Next(-50, -1) | randY.Next(801, 851), this);
+                    zombie = new Zombie(leftsideX, sideY, this);
+                    zombieList.Add(zombie);
+                }
+
+                for (int z = 0; z < 2; z++)
+                {
+                    zombie = new Zombie(rightsideX, sideY, this);
+                    zombieList.Add(zombie);
+                }
+
+                for (int z = 0; z < 2; z++)
+                {
+                    zombie = new Zombie(sideX, topsideY, this);
+                    zombieList.Add(zombie);
+                }
+
+                for (int z = 0; z < 2; z++) 
+                {
+                    zombie = new Zombie(sideX, bottomsideY, this);
                     zombieList.Add(zombie);
                 }
             }
@@ -108,7 +135,7 @@ namespace Zombie_Arcade
 
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e) //place i dumped some code to constantly be updated as long as the cuursosr is moving in the form
+        private void Form1_MouseMove(object sender, MouseEventArgs e) //place i dumped some code to constantly be updated as long as the cursor is moving in the form
         {
             MouseLocX = e.Location.X;
             MouseLocY = e.Location.Y;
@@ -152,13 +179,13 @@ namespace Zombie_Arcade
                 }
             }
 
-            foreach (Bullet Rbullet in RemoveBullets) //using the new bullet list titled RemoveBullets i can remove the bullets from the form and list without crashing my program
+            foreach (Bullet Rbullet in RemoveBullets) //using the bullet list titled RemoveBullets i can remove the bullets from the form and list without crashing my program
             {
                 bulletList.Remove(Rbullet);
                 Rbullet.BulletRemove2();
             }
 
-            foreach (Zombie Rzombie in RemoveZombies) //using the new RemoveZombies list i can remove the zombies without breaking my other foreach loop
+            foreach (Zombie Rzombie in RemoveZombies) //using the  RemoveZombies list i can remove the zombies without breaking my other foreach loop
             {
                 zombieList.Remove(Rzombie);
                 Rzombie.ZombieDeath();
@@ -170,6 +197,17 @@ namespace Zombie_Arcade
                 else if (Player1.PlayerX > tmpzombie.ZombieX) tmpzombie.ZombieMoveRight();
                 if (Player1.PlayerY < tmpzombie.ZombieY) tmpzombie.ZombieMoveUp();
                 else if (Player1.PlayerY > tmpzombie.ZombieY) tmpzombie.ZombieMoveDown();
+            }
+
+            foreach (Zombie zombie1 in zombieList)
+            {
+                foreach (Zombie zombie2 in zombieList)
+                {
+                    if (zombie1 != zombie2 && ZombieZombieCollisionTest(zombie1, zombie2))
+                    {
+                        zombie1.ResovleCollision(zombie1, zombie2);
+                    }
+                }
             }
         }
         protected virtual void CalcTrajectory(int startX, int startY, int endX, int endY)
@@ -191,6 +229,20 @@ namespace Zombie_Arcade
             if (zombie.ZombieY + zombie.ZombieHeight < bullet.BulletY)
                 return false;
             if (bullet.BulletY < zombie.ZombieY)
+                return false;
+
+            return true;
+        }
+
+        private Boolean ZombieZombieCollisionTest(Zombie zombie1, Zombie zombie2) //returns true if collision has occured, false otherwise
+        {
+            if (zombie1.ZombieX + zombie1.ZombieWidth < zombie2.ZombieX)
+                return false;
+            if (zombie2.ZombieX + zombie2.ZombieWidth < zombie1.ZombieX)
+                return false;
+            if (zombie1.ZombieY + zombie1.ZombieHeight < zombie2.ZombieY)
+                return false;
+            if (zombie2.ZombieY + zombie2.ZombieHeight < zombie1.ZombieY)
                 return false;
 
             return true;
