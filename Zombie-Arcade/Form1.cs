@@ -186,13 +186,13 @@ namespace Zombie_Arcade
                 Rbullet.BulletRemove2();
             }
 
-            foreach (Zombie Rzombie in RemoveZombies) //using the  RemoveZombies list i can remove the zombies without breaking my other foreach loop
+            foreach (Zombie Rzombie in RemoveZombies) //using the RemoveZombies list i can remove the zombies without breaking my other foreach loop
             {
                 zombieList.Remove(Rzombie);
                 Rzombie.ZombieDeath();
             }
 
-            foreach (Zombie tmpzombie in zombieList) //here the zombies just follow the player based on their loaction
+            foreach (Zombie tmpzombie in zombieList) //here the zombies just follow the player based on players loaction
             {
                 if (Player1.PlayerX < tmpzombie.ZombieX) tmpzombie.ZombieMoveLeft();
                 else if (Player1.PlayerX > tmpzombie.ZombieX) tmpzombie.ZombieMoveRight();

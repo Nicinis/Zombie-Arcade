@@ -66,7 +66,7 @@ namespace Zombie_Arcade
             }
         }
 
-        public void ResovleCollision(Zombie zombie1, Zombie zombie2)
+        public void ResovleCollision(Zombie zombie1, Zombie zombie2)//figuriing out the overlap of the picturboxs so i can then divide it and use it to push the pictureboxes away repsectively i added a +1 as a buffer to the pictureboxes
         {
             int overlap1X = zombie1.ZombiePic.Left - zombie2.ZombiePic.Right;
             int overlap2X = zombie1.ZombiePic.Right - zombie2.ZombiePic.Left;

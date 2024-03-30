@@ -23,7 +23,7 @@ namespace Zombie_Arcade
             bulletPic = new PictureBox();
             bulletPic.Width = 4;
             bulletPic.Height = 4;
-            bulletPic.BackColor = Color.Black;
+            bulletPic.BackColor = Color.Yellow;
             bulletPic.Left = x;
             bulletPic.Top = y;
             bulletfrom.Controls.Add(bulletPic);

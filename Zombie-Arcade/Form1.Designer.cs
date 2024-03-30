@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tmrMovement = new System.Windows.Forms.Timer(components);
             zombieTimer = new System.Windows.Forms.Timer(components);
             lblZombieCnt = new Label();
@@ -70,6 +71,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1729, 1183);
             Controls.Add(label1);
             Controls.Add(lblZombieCnt);
