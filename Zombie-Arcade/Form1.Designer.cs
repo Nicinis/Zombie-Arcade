@@ -36,6 +36,7 @@
             label1 = new Label();
             label2 = new Label();
             progressBar1 = new ProgressBar();
+            label3 = new Label();
             SuspendLayout();
             // 
             // tmrMovement
@@ -85,12 +86,22 @@
             progressBar1.Size = new Size(150, 34);
             progressBar1.TabIndex = 3;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(1006, 17);
+            label3.Name = "label3";
+            label3.Size = new Size(59, 25);
+            label3.TabIndex = 4;
+            label3.Text = "label3";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(1729, 1183);
+            Controls.Add(label3);
             Controls.Add(progressBar1);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -118,5 +129,6 @@
         private Label label1;
         private Label label2;
         private ProgressBar progressBar1;
+        private Label label3;
     }
 }

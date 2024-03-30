@@ -13,6 +13,7 @@ namespace Zombie_Arcade
         private int pySpeed = 5;
         private Form form;
         public int health = 100;
+        
 
         public int PlayerX { get { return PlayerPic.Left; } }
         public int PlayerY { get { return PlayerPic.Top; } }
