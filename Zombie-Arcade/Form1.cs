@@ -12,6 +12,7 @@ namespace Zombie_Arcade
         private Player Player1;
         public int MouseLocX;
         public int MouseLocY;
+        private int Score = 0;
         private int zombieCounter = 0;
         private Random randX = new Random();
         private Random randY = new Random();
@@ -24,6 +25,7 @@ namespace Zombie_Arcade
         public double stepX = 0.00;
         public double stepY = 0.00;
         public double speed = 20.00;
+        Form2 form2 = new Form2();
 
         public Form1()
         {
@@ -45,12 +47,14 @@ namespace Zombie_Arcade
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            form2.ShowDialog();
         }
 
 
         private void zombieTimer_Tick(object sender, EventArgs e)
         {
+            if (form2.Visible) { zombieTimer.Enabled = false; }
+
             int leftsideX = randX.Next(-50, -1);
             int rightsideX = randX.Next(1501, 1551);
             int sideY = randY.Next(0, 800);
@@ -78,7 +82,7 @@ namespace Zombie_Arcade
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 2; z++) 
+                for (int z = 0; z < 2; z++)
                 {
                     zombie = new Zombie(sideX, bottomsideY, this);
                     zombieList.Add(zombie);
@@ -146,6 +150,9 @@ namespace Zombie_Arcade
 
             progressBar1.Value = Player1.health;
             label2.Text = "Health: " + Player1.health.ToString();
+
+            Score = RemoveZombies.Count;
+            lblKills.Text = "Kills: " + Score.ToString();
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -159,6 +166,8 @@ namespace Zombie_Arcade
 
         private void timer1_Tick(object sender, EventArgs e) //code provided from Steve on moving a control using binary values to check if multiple keys are being pressed 
         {
+            if (form2.Visible) tmrMovement.Enabled = false;
+
             if ((player1 & KeyMove.left) == KeyMove.left) Player1.MoveLeft();
             if ((player1 & KeyMove.right) == KeyMove.right) Player1.MoveRight();
             if ((player1 & KeyMove.up) == KeyMove.up) Player1.MoveUp();
@@ -205,10 +214,10 @@ namespace Zombie_Arcade
 
             foreach (Zombie zombie1 in zombieList)
             {
-                if (ZombiePlayerCollisionTest(zombie1, Player1)) 
+                if (ZombiePlayerCollisionTest(zombie1, Player1))
                 {
                     Player1.health -= 1;
-                    if(Player1.health == 0)
+                    if (Player1.health == 0)
                     {
                         Player1.PlayerDeath();
                         tmrMovement.Enabled = false;
@@ -284,7 +293,7 @@ namespace Zombie_Arcade
             {
                 bulletList.Remove(bullets);
                 bullets.BulletRemove2();
-                
+
             }
             else if (bullets.BulletX < 0)
             {
@@ -297,7 +306,7 @@ namespace Zombie_Arcade
                 bulletList.Remove(bullets);
                 bullets.BulletRemove2();
             }
-            else if (bullets.BulletY > this.ClientSize.Height) 
+            else if (bullets.BulletY > this.ClientSize.Height)
             {
                 bulletList.Remove(bullets);
                 bullets.BulletRemove2();
