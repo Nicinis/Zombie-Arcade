@@ -25,7 +25,11 @@ namespace Zombie_Arcade
         public double stepX = 0.00;
         public double stepY = 0.00;
         public double speed = 20.00;
-        Form2 form2 = new Form2();
+        private int TimeSec = 0;
+        //Form2 form2 = new Form2();
+
+        public int Kills { get { return Score; } }
+        public int Time { get { return TimeSec; } }
 
         public Form1()
         {
@@ -53,11 +57,13 @@ namespace Zombie_Arcade
             {
                 zombieTimer.Enabled = false;
                 tmrMovement.Enabled = false;
+                TimerTimer.Enabled = false;
             }
             else if (form2.Visible == false)
             {
                 zombieTimer.Enabled = true;
                 tmrMovement.Enabled = true;
+                TimerTimer.Enabled = true;
             }
         }
 
@@ -230,6 +236,7 @@ namespace Zombie_Arcade
                         tmrMovement.Enabled = false;
                         zombieTimer.Enabled = false;
                         MessageBox.Show("The zombies ate your brains!");
+                        form2.Saving();
                     }
                 }
                 foreach (Zombie zombie2 in zombieList)
@@ -318,6 +325,11 @@ namespace Zombie_Arcade
                 bulletList.Remove(bullets);
                 bullets.BulletRemove2();
             }
+        }
+
+        private void TimerTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSec++;
         }
     }
 }

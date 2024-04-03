@@ -31,6 +31,8 @@
             LstScore = new ListBox();
             btnStart = new Button();
             btnDisplayScores = new Button();
+            txtPlayerName = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // LstScore
@@ -44,7 +46,7 @@
             // 
             // btnStart
             // 
-            btnStart.Location = new Point(12, 247);
+            btnStart.Location = new Point(12, 276);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(156, 32);
             btnStart.TabIndex = 1;
@@ -54,18 +56,37 @@
             // 
             // btnDisplayScores
             // 
-            btnDisplayScores.Location = new Point(174, 247);
+            btnDisplayScores.Location = new Point(174, 276);
             btnDisplayScores.Name = "btnDisplayScores";
             btnDisplayScores.Size = new Size(170, 32);
             btnDisplayScores.TabIndex = 2;
             btnDisplayScores.Text = "Display Scores";
             btnDisplayScores.UseVisualStyleBackColor = true;
+            btnDisplayScores.Click += btnDisplayScores_Click;
+            // 
+            // txtPlayerName
+            // 
+            txtPlayerName.Location = new Point(174, 247);
+            txtPlayerName.Name = "txtPlayerName";
+            txtPlayerName.Size = new Size(170, 23);
+            txtPlayerName.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(91, 250);
+            label1.Name = "label1";
+            label1.Size = new Size(77, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Player Name:";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(363, 291);
+            ClientSize = new Size(363, 323);
+            Controls.Add(label1);
+            Controls.Add(txtPlayerName);
             Controls.Add(btnDisplayScores);
             Controls.Add(btnStart);
             Controls.Add(LstScore);
@@ -74,6 +95,7 @@
             Text = "Zombie-Arcade";
             Load += Form2_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -81,5 +103,7 @@
         private ListBox LstScore;
         private Button btnStart;
         private Button btnDisplayScores;
+        private TextBox txtPlayerName;
+        private Label label1;
     }
 }

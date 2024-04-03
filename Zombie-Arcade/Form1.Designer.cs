@@ -37,6 +37,7 @@
             label2 = new Label();
             progressBar1 = new ProgressBar();
             lblKills = new Label();
+            TimerTimer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // tmrMovement
@@ -90,6 +91,11 @@
             lblKills.Size = new Size(0, 15);
             lblKills.TabIndex = 4;
             // 
+            // TimerTimer
+            // 
+            TimerTimer.Interval = 1000;
+            TimerTimer.Tick += TimerTimer_Tick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -124,5 +130,6 @@
         private Label label2;
         private ProgressBar progressBar1;
         private Label lblKills;
+        private System.Windows.Forms.Timer TimerTimer;
     }
 }
