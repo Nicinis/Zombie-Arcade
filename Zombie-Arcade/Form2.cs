@@ -13,7 +13,8 @@ namespace Zombie_Arcade
 
     public partial class Form2 : Form
     {
-        private Form form = Form1.ActiveForm;
+        private string PlayerName;
+        
         public Form2()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace Zombie_Arcade
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            PlayerName = txtPlayerName.Text;
             this.Close();
         }
 
@@ -47,9 +49,10 @@ namespace Zombie_Arcade
 
         public void Saving()
         {
+            
 
             StreamWriter outputFile = File.AppendText("scores.txt");
-            string str = $"{txtPlayerName.Text}";
+            string str = $"{PlayerName}";
             outputFile.WriteLine(str);
             outputFile.Close();
         }
