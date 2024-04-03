@@ -48,14 +48,22 @@ namespace Zombie_Arcade
         private void Form1_Load(object sender, EventArgs e)
         {
             form2.ShowDialog();
+
+            if (form2.Visible == true)
+            {
+                zombieTimer.Enabled = false;
+                tmrMovement.Enabled = false;
+            }
+            else if (form2.Visible == false)
+            {
+                zombieTimer.Enabled = true;
+                tmrMovement.Enabled = true;
+            }
         }
 
 
         private void zombieTimer_Tick(object sender, EventArgs e)
         {
-            if (form2.Visible) zombieTimer.Enabled = false;
-            else zombieTimer.Enabled = true;
-
             int leftsideX = randX.Next(-50, -1);
             int rightsideX = randX.Next(1501, 1551);
             int sideY = randY.Next(0, 800);
@@ -167,9 +175,6 @@ namespace Zombie_Arcade
 
         private void timer1_Tick(object sender, EventArgs e) //code provided from Steve on moving a control using binary values to check if multiple keys are being pressed 
         {
-            if (form2.Visible) tmrMovement.Enabled = false;
-            else tmrMovement.Enabled = true;
-
             if ((player1 & KeyMove.left) == KeyMove.left) Player1.MoveLeft();
             if ((player1 & KeyMove.right) == KeyMove.right) Player1.MoveRight();
             if ((player1 & KeyMove.up) == KeyMove.up) Player1.MoveUp();

@@ -41,13 +41,11 @@
             // 
             // tmrMovement
             // 
-            tmrMovement.Enabled = true;
             tmrMovement.Interval = 25;
             tmrMovement.Tick += timer1_Tick;
             // 
             // zombieTimer
             // 
-            zombieTimer.Enabled = true;
             zombieTimer.Interval = 15000;
             zombieTimer.Tick += zombieTimer_Tick;
             // 
@@ -79,7 +77,7 @@
             // progressBar1
             // 
             progressBar1.Location = new Point(438, 7);
-            progressBar1.Margin = new Padding(2, 2, 2, 2);
+            progressBar1.Margin = new Padding(2);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(105, 20);
             progressBar1.TabIndex = 3;
