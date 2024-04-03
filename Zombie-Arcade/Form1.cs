@@ -164,6 +164,8 @@ namespace Zombie_Arcade
 
             Score = RemoveZombies.Count;
             lblKills.Text = "Kills: " + Score.ToString();
+
+            lblTime.Text = "Time: " + TimeSec.ToString() + "secs";
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -228,10 +230,12 @@ namespace Zombie_Arcade
                     Player1.health -= 1;
                     if (Player1.health == 0)
                     {
+                        Player1.health = 0;
                         Player1.PlayerDeath();
                         tmrMovement.Enabled = false;
                         zombieTimer.Enabled = false;
                         MessageBox.Show("The zombies ate your brains!");
+                        form2.Saving(Score,TimeSec);
                     }
                 }
                 foreach (Zombie zombie2 in zombieList)
