@@ -13,7 +13,7 @@ namespace Zombie_Arcade
 
     public partial class Form2 : Form
     {
-        Form1 form1 = new Form1();
+        private Form form = Form1.ActiveForm;
         public Form2()
         {
             InitializeComponent();
@@ -37,15 +37,19 @@ namespace Zombie_Arcade
             {
                 string tmpstr = inputfile.ReadLine();
                 string[] tmp = tmpstr.Split(',');
-                LstScore.Items.Add(tmp);
+                string Name = tmp[0];
+                string Score = tmp[1];
+                string Time = tmp[2];
+                LstScore.Items.Add("NAME: " + Name + " KILLS: " + Score + " TIME LIVED: " + Time);
             }
             inputfile.Close();
         }
 
         public void Saving()
         {
+
             StreamWriter outputFile = File.AppendText("scores.txt");
-            string str = $"{txtPlayerName.Text},{form1.Kills},{form1.Time}";
+            string str = $"{txtPlayerName.Text}";
             outputFile.WriteLine(str);
             outputFile.Close();
         }

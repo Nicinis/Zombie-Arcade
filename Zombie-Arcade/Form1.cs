@@ -12,7 +12,7 @@ namespace Zombie_Arcade
         private Player Player1;
         public int MouseLocX;
         public int MouseLocY;
-        private int Score = 0;
+        public int Score = 0;
         private int zombieCounter = 0;
         private Random randX = new Random();
         private Random randY = new Random();
@@ -25,15 +25,11 @@ namespace Zombie_Arcade
         public double stepX = 0.00;
         public double stepY = 0.00;
         public double speed = 20.00;
-        private int TimeSec = 0;
-        //Form2 form2 = new Form2();
-
-        public int Kills { get { return Score; } }
-        public int Time { get { return TimeSec; } }
-
+        public int TimeSec = 0;
+        Form2 form2 = new Form2();
+        
         public Form1()
         {
-
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -236,7 +232,6 @@ namespace Zombie_Arcade
                         tmrMovement.Enabled = false;
                         zombieTimer.Enabled = false;
                         MessageBox.Show("The zombies ate your brains!");
-                        form2.Saving();
                     }
                 }
                 foreach (Zombie zombie2 in zombieList)
