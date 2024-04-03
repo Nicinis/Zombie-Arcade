@@ -49,7 +49,7 @@ namespace Zombie_Arcade
                 string Name = tmp[0];
                 string Score = tmp[1];
                 string Time = tmp[2];
-                LstScore.Items.Add("NAME: " + Name + " KILLS: " + Score + " TIME LIVED: " + Time+"seconds");
+                LstScore.Items.Add("NAME: " + Name + " KILLS: " + Score + " TIME LIVED: " + Time + "seconds");
             }
             inputfile.Close();
         }
@@ -62,6 +62,11 @@ namespace Zombie_Arcade
             string str = $"{PlayerName},{Score},{Time}";
             outputFile.WriteLine(str);
             outputFile.Close();
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("AWSD is used to move the black box, that is you. Use the mouse location to aim and click to fire. Now dont die!");
         }
     }
 }

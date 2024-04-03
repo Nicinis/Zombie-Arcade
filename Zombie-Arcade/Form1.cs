@@ -38,7 +38,7 @@ namespace Zombie_Arcade
             Height = 800;
             Player1 = new Player(this.ClientSize.Width / 2, this.ClientSize.Height / 2, this);
             bullets = new Bullet(-1, -1, this);
-            for (int z = 0; z < 2; z++) //2 random zombies to test with
+            for (int z = 0; z < 4; z++) //4 random zombies to test with and have decided to keep them as the beginners zombies
             {
                 zombie = new Zombie(randX.Next(1, 800), randY.Next(1, 400), this);
                 zombieList.Add(zombie);
