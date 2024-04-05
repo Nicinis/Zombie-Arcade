@@ -16,6 +16,7 @@ namespace Zombie_Arcade
         private int zombieCounter = 0;
         private Random randX = new Random();
         private Random randY = new Random();
+        private Random randZombies = new Random();
         List<Zombie> zombieList = new List<Zombie>();
         List<Zombie> RemoveZombies = new List<Zombie>();
         List<Bullet> bulletList = new List<Bullet>();
@@ -73,28 +74,29 @@ namespace Zombie_Arcade
             int topsideY = randY.Next(-50, -1);
             int bottomsideY = randY.Next(801, 851);
             int sideX = randX.Next(0, 1500);
+            int RandZombies = randZombies.Next(1, 4);
 
             if (zombieCounter < 6)
             {
-                for (int z = 0; z < 2; z++)
+                for (int z = 0; z < RandZombies; z++)
                 {
                     zombie = new Zombie(leftsideX, sideY, this);
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 2; z++)
+                for (int z = 0; z < RandZombies; z++)
                 {
                     zombie = new Zombie(rightsideX, sideY, this);
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 2; z++)
+                for (int z = 0; z < RandZombies; z++)
                 {
                     zombie = new Zombie(sideX, topsideY, this);
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 2; z++)
+                for (int z = 0; z < RandZombies; z++)
                 {
                     zombie = new Zombie(sideX, bottomsideY, this);
                     zombieList.Add(zombie);
