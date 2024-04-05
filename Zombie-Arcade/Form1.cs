@@ -76,25 +76,25 @@ namespace Zombie_Arcade
 
             if (zombieCounter < 6)
             {
-                for (int z = 0; z < 3; z++)
+                for (int z = 0; z < 2; z++)
                 {
                     zombie = new Zombie(leftsideX, sideY, this);
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 3; z++)
+                for (int z = 0; z < 2; z++)
                 {
                     zombie = new Zombie(rightsideX, sideY, this);
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 3; z++)
+                for (int z = 0; z < 2; z++)
                 {
                     zombie = new Zombie(sideX, topsideY, this);
                     zombieList.Add(zombie);
                 }
 
-                for (int z = 0; z < 3; z++)
+                for (int z = 0; z < 2; z++)
                 {
                     zombie = new Zombie(sideX, bottomsideY, this);
                     zombieList.Add(zombie);

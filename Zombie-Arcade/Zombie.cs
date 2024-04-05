@@ -33,7 +33,7 @@ namespace Zombie_Arcade
             ZombiePic.Top = y;
             zombieform.Controls.Add(ZombiePic);
             form = zombieform;
-            health = rndHealth.Next(1, 5);
+            health = rndHealth.Next(1, 6);
             ZombieHealth();
         }
         public void ZombieMoveUp()

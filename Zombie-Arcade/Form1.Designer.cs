@@ -43,7 +43,7 @@
             // 
             // tmrMovement
             // 
-            tmrMovement.Interval = 15;
+            tmrMovement.Interval = 20;
             tmrMovement.Tick += timer1_Tick;
             // 
             // zombieTimer
