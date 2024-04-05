@@ -142,7 +142,11 @@ namespace Zombie_Arcade
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-
+            bullets = new Bullet(Player1.PlayerX + 12, Player1.PlayerY + 21, this);
+            bulletList.Add(bullets);
+            CalcTrajectory(Player1.PlayerX, Player1.PlayerY, MouseLocX, MouseLocY);
+            bullets.bulletSpdX = stepX;
+            bullets.bulletSpdY = stepY;
         }
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
@@ -170,11 +174,11 @@ namespace Zombie_Arcade
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            bullets = new Bullet(Player1.PlayerX + 12, Player1.PlayerY + 21, this);
-            bulletList.Add(bullets);
-            CalcTrajectory(Player1.PlayerX, Player1.PlayerY, MouseLocX, MouseLocY);
-            bullets.bulletSpdX = stepX;
-            bullets.bulletSpdY = stepY;
+            //bullets = new Bullet(Player1.PlayerX + 12, Player1.PlayerY + 21, this);
+            //bulletList.Add(bullets);
+            //CalcTrajectory(Player1.PlayerX, Player1.PlayerY, MouseLocX, MouseLocY);
+            //bullets.bulletSpdX = stepX;
+            //bullets.bulletSpdY = stepY;
         }
 
         private void timer1_Tick(object sender, EventArgs e) //code provided from Steve on moving a control using binary values to check if multiple keys are being pressed 
