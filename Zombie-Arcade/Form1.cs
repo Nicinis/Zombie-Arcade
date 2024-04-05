@@ -236,6 +236,7 @@ namespace Zombie_Arcade
                         zombieTimer.Enabled = false;
                         MessageBox.Show("The zombies ate your brains!");
                         form2.Saving(Score,TimeSec);
+                        form2.ShowDialog();
                     }
                 }
                 foreach (Zombie zombie2 in zombieList)
