@@ -12,8 +12,9 @@ namespace Zombie_Arcade
         private PictureBox ZombiePic;
         private int zxSpeed = 3;
         private int zySpeed = 3;
-        public int health = 3;
+        public int health = 0;
         private Form form;
+        private Random rndHealth = new Random();
         private Random randX = new Random();
         private Random randY = new Random();
 
@@ -26,13 +27,14 @@ namespace Zombie_Arcade
         public Zombie(int x, int y, Form zombieform)
         {
             ZombiePic = new PictureBox();
-            ZombiePic.BackColor = Color.Green;
             ZombiePic.Width = 23;
             ZombiePic.Height = 42;
             ZombiePic.Left = x;
             ZombiePic.Top = y;
             zombieform.Controls.Add(ZombiePic);
             form = zombieform;
+            health = rndHealth.Next(1, 5);
+            ZombieHealth();
         }
         public void ZombieMoveUp()
         {
@@ -59,15 +61,23 @@ namespace Zombie_Arcade
         }
         public void ZombieHealth()
         {
-            if (health == 3)
+            if (health == 5)
             {
                 ZombiePic.BackColor = Color.Green;
+            }
+            else if (health == 4)
+            {
+                ZombiePic.BackColor = Color.Pink;
+            }
+            else if (health == 3)
+            {
+                ZombiePic.BackColor = Color.Purple;
             }
             else if (health == 2)
             {
                 ZombiePic.BackColor = Color.Orange;
             }
-            else if (health == 1) 
+            else if (health == 1)
             {
                 ZombiePic.BackColor = Color.Red;
             }
@@ -107,9 +117,9 @@ namespace Zombie_Arcade
                 zombie2.ZombiePic.Top += newoverlap + 1;
             }
 
-            
+
         }
-        public void MoveZombiesonDeath() 
+        public void MoveZombiesonDeath()
         {
             ZombiePic.Left = randX.Next(1, 1460);
             ZombiePic.Top = randY.Next(1, 720);

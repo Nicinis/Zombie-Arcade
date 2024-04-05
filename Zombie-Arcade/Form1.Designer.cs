@@ -43,7 +43,7 @@
             // 
             // tmrMovement
             // 
-            tmrMovement.Interval = 25;
+            tmrMovement.Interval = 15;
             tmrMovement.Tick += timer1_Tick;
             // 
             // zombieTimer
@@ -54,43 +54,42 @@
             // lblZombieCnt
             // 
             lblZombieCnt.AutoSize = true;
-            lblZombieCnt.Location = new Point(1071, 15);
-            lblZombieCnt.Margin = new Padding(4, 0, 4, 0);
+            lblZombieCnt.Location = new Point(750, 9);
             lblZombieCnt.Name = "lblZombieCnt";
-            lblZombieCnt.Size = new Size(0, 25);
+            lblZombieCnt.Size = new Size(0, 15);
             lblZombieCnt.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(17, 15);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(12, 9);
             label1.Name = "label1";
-            label1.Size = new Size(0, 25);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(501, 15);
+            label2.Location = new Point(351, 9);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(0, 25);
+            label2.Size = new Size(0, 15);
             label2.TabIndex = 2;
             // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(626, 12);
+            progressBar1.Location = new Point(438, 7);
+            progressBar1.Margin = new Padding(2);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(150, 33);
+            progressBar1.Size = new Size(105, 20);
             progressBar1.TabIndex = 3;
             // 
             // lblKills
             // 
             lblKills.AutoSize = true;
-            lblKills.Location = new Point(983, 15);
-            lblKills.Margin = new Padding(4, 0, 4, 0);
+            lblKills.Location = new Point(688, 9);
             lblKills.Name = "lblKills";
-            lblKills.Size = new Size(0, 25);
+            lblKills.Size = new Size(0, 15);
             lblKills.TabIndex = 4;
             // 
             // TimerTimer
@@ -101,17 +100,18 @@
             // lblTime
             // 
             lblTime.AutoSize = true;
-            lblTime.Location = new Point(1303, 15);
+            lblTime.Location = new Point(912, 9);
+            lblTime.Margin = new Padding(2, 0, 2, 0);
             lblTime.Name = "lblTime";
-            lblTime.Size = new Size(0, 25);
+            lblTime.Size = new Size(0, 15);
             lblTime.TabIndex = 5;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(1729, 1062);
+            ClientSize = new Size(1210, 637);
             Controls.Add(lblTime);
             Controls.Add(lblKills);
             Controls.Add(progressBar1);
@@ -119,7 +119,6 @@
             Controls.Add(label1);
             Controls.Add(lblZombieCnt);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
             Text = "Wasteland";
             Load += Form1_Load;
