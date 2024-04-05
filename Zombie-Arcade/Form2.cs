@@ -19,6 +19,9 @@ namespace Zombie_Arcade
         public Form2()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.UserPaint, true);
         }
 
         private void btnStart_Click(object sender, EventArgs e)
