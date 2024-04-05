@@ -53,14 +53,7 @@ namespace Zombie_Arcade
             PlayerPic.Left += pxSpeed;
             if (PlayerPic.Left + PlayerPic.Width >= form.ClientSize.Width) PlayerPic.Left = form.ClientSize.Width - PlayerPic.Width;
         }
-
-        public void PlayerDeath() 
-        {
-            PlayerPic.Visible = false;
-            PlayerPic.Dispose();
-            
-        }
-
+               
     }
 
 

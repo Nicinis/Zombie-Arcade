@@ -15,6 +15,7 @@ namespace Zombie_Arcade
     {
         private string PlayerName;
 
+
         public Form2()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace Zombie_Arcade
 
         private void btnDisplayScores_Click(object sender, EventArgs e)
         {
+            LstScore.Items.Clear();
             StreamReader inputfile = File.OpenText("scores.txt");
 
             while (!inputfile.EndOfStream)

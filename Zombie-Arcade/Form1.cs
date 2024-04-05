@@ -27,7 +27,7 @@ namespace Zombie_Arcade
         public double speed = 20.00;
         public int TimeSec = 0;
         Form2 form2 = new Form2();
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -38,11 +38,6 @@ namespace Zombie_Arcade
             Height = 800;
             Player1 = new Player(this.ClientSize.Width / 2, this.ClientSize.Height / 2, this);
             bullets = new Bullet(-1, -1, this);
-            for (int z = 0; z < 4; z++) //4 random zombies to test with and have decided to keep them as the beginners zombies
-            {
-                zombie = new Zombie(randX.Next(1, 800), randY.Next(1, 400), this);
-                zombieList.Add(zombie);
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -60,6 +55,12 @@ namespace Zombie_Arcade
                 zombieTimer.Enabled = true;
                 tmrMovement.Enabled = true;
                 TimerTimer.Enabled = true;
+            }
+
+            for (int z = 0; z < 4; z++) //4 random zombies to test with and have decided to keep them as the beginners zombies
+            {
+                zombie = new Zombie(randX.Next(1, 800), randY.Next(1, 400), this);
+                zombieList.Add(zombie);
             }
         }
 
@@ -122,7 +123,6 @@ namespace Zombie_Arcade
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-
             switch (e.KeyData)
             {
                 case Keys.A:
@@ -231,12 +231,26 @@ namespace Zombie_Arcade
                     if (Player1.health == 0)
                     {
                         Player1.health = 0;
-                        Player1.PlayerDeath();
                         tmrMovement.Enabled = false;
                         zombieTimer.Enabled = false;
+                        TimerTimer.Enabled = false;
                         MessageBox.Show("The zombies ate your brains!");
-                        form2.Saving(Score,TimeSec);
+                        form2.Saving(Score, TimeSec);
+                        Reset();
                         form2.ShowDialog();
+
+                        if (form2.Visible == true)
+                        {
+                            zombieTimer.Enabled = false;
+                            tmrMovement.Enabled = false;
+                            TimerTimer.Enabled = false;
+                        }
+                        else if (form2.Visible == false)
+                        {
+                            zombieTimer.Enabled = true;
+                            tmrMovement.Enabled = true;
+                            TimerTimer.Enabled = true;
+                        }
                     }
                 }
                 foreach (Zombie zombie2 in zombieList)
@@ -330,6 +344,21 @@ namespace Zombie_Arcade
         private void TimerTimer_Tick(object sender, EventArgs e)
         {
             TimeSec++;
+        }
+
+        private void Reset()
+        {
+            Player1.health = 100;
+            foreach (Zombie tmpZmb in zombieList)
+            {
+                RemoveZombies.Add(tmpZmb);
+                zombie.ZombieDeath();
+            }
+
+            TimeSec = 0;
+            bulletList.Clear();
+            RemoveBullets.Clear();
+            RemoveZombies.Clear();
         }
     }
 }
