@@ -352,7 +352,8 @@ namespace Zombie_Arcade
             foreach (Zombie tmpZmb in zombieList)
             {
                 RemoveZombies.Add(tmpZmb);
-                zombie.ZombieDeath();
+                tmpZmb.health = 3;
+                tmpZmb.MoveZombiesonDeath();
             }
 
             TimeSec = 0;

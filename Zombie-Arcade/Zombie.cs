@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Zombie_Arcade
         private int zySpeed = 3;
         public int health = 3;
         private Form form;
+        private Random randX = new Random();
+        private Random randY = new Random();
 
         public int ZombieX { get { return ZombiePic.Left; } }
         public int ZombieY { get { return ZombiePic.Top; } }
@@ -103,6 +106,13 @@ namespace Zombie_Arcade
                 zombie1.ZombiePic.Top -= newoverlap + 1;
                 zombie2.ZombiePic.Top += newoverlap + 1;
             }
+
+            
+        }
+        public void MoveZombiesonDeath() 
+        {
+            ZombiePic.Left = randX.Next(1, 1460);
+            ZombiePic.Top = randY.Next(1, 720);
         }
     }
 }
